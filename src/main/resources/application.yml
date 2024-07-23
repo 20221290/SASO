@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:mysql://localhost:3306/saso?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  security:
+    user:
+      password: 123456
+  main:
+    banner-mode: off # 控制台日志中不打印 spring 的 logo
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  global-config:
+#    # 日志中不打印 mybatis plus 的 logo 信息
+#    banner: false
+#    db-config:
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+#      logic-delete-field:
+jwt:
+  expire: 604800
+  header: Authorization
+  secret: /.wsnd./
+mybatis-plus:
+  mapper-locations:
+  - classpath:mapper/*.xml
+  - classpath*:com/**/mapper/*.xml
