@@ -46,6 +46,12 @@ public class CommonResult<T> {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), message, data);
     }
 
+    public CommonResult(long code,String message){
+        this.code = code;
+        this.message = message;
+    }
+
+
     /**
      * 失败返回结果
      * @param errorCode 错误码

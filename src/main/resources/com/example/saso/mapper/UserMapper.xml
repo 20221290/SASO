@@ -445,4 +445,7 @@
   <delete id="deleteByUsername" parameterType="com.example.saso.entity.User">
     delete from user where username = #{username,jdbcType=VARCHAR}
   </delete>
+  <select id="findByName" resultMap="BaseResultMap">
+    select * from user where username = #{username,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -46,7 +46,7 @@
                              targetPackage="com.example.saso.mapper"
                              targetProject="src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="service_category">
+        <table tableName="order">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
         <!--<table tableName="ums_role">

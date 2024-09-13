@@ -98,4 +98,6 @@ public interface UserMapper {
     int updateByUsername(User user);
 
     int deleteByUsername(User user);
+
+    User findByName(String name);
 }
