@@ -5,6 +5,7 @@ import com.example.saso.entity.ServiceCategory;
 import com.example.saso.service.ServiceCategoryService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class ServiceCategoryController {
     @Autowired
     private ServiceCategoryService serviceCategoryService;
 
+//    @PreAuthorize("hasAuthority('admin')")
     @ApiOperation(value = "获取服务分类")
     @GetMapping("/category")
     public CommonResult getServiceCategory() {

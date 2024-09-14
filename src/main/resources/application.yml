@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 5530
 spring:
   mvc:
     pathmatch:
@@ -14,7 +14,17 @@ spring:
       password: 123456
   main:
     banner-mode: off # 控制台日志中不打印 spring 的 logo
-
+  redis:
+    database: 0
+    host: localhost
+    password:
+    port: 6379
+    lettuce:
+      pool:
+        max-idle: 8
+        max-active: 8
+        max-wait: -1
+        min-idle: 0
 #mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -25,11 +35,4 @@ spring:
 #      logic-delete-value: 1
 #      logic-not-delete-value: 0
 #      logic-delete-field:
-jwt:
-  expire: 604800
-  header: Authorization
-  secret: /.wsnd./
-mybatis-plus:
-  mapper-locations:
-  - classpath:mapper/*.xml
-  - classpath*:com/**/mapper/*.xml
+

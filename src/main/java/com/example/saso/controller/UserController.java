@@ -4,20 +4,24 @@ import com.example.saso.api.CommonResult;
 import com.example.saso.entity.User;
 
 import com.example.saso.mapper.UserMapper;
+import com.example.saso.service.LoginService;
 import com.example.saso.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-/*可优化:加入security认证授权，使用token进行用户敏感操作（修改、注册、登录等）
-* 用户登录、登出操作*/
+
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
     @Autowired
     private  UserService userService;
+    @Autowired
+    private LoginService loginService;
 
+    //注册逻辑中应当对create_time(即创建时)和last_login_time(即最近登录时)进行设置，目前编写的Controller没有实现
     @ApiOperation("用户注册")
     @PostMapping("/register")
     @ResponseBody
@@ -55,5 +59,17 @@ public class UserController {
         else {
             return CommonResult.failed(msg);
         }
+    }
+
+    @ApiOperation("用户登录")
+    @PostMapping("/login")
+    public CommonResult login(@RequestBody User user){
+        return loginService.login(user);
+    }
+
+    @ApiOperation("用户登出")
+    @PostMapping("/logout")
+    public CommonResult logout(){
+        return loginService.logout();
     }
 }

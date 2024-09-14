@@ -6,6 +6,8 @@ import com.example.saso.entity.UserExample;
 import com.example.saso.mapper.UserMapper;
 import com.example.saso.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();  // 密码加密器
 
     @Override
     public String register(User user) {
@@ -29,6 +33,7 @@ public class UserServiceImpl implements UserService {
             } else if (user.getPassword().isEmpty()) {
                 return "密码不为空";
             }else {
+                user.setPassword(passwordEncoder.encode(user.getPassword()));
                 userMapper.insert(user);
                 return "success";
             }
@@ -64,4 +69,10 @@ public class UserServiceImpl implements UserService {
         }
         return "销毁账号失败";
     }
+
+    /**
+     * @param
+     * @return
+     */
+
 }
